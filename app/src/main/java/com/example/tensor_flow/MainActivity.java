@@ -19,7 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.tensor_flow.ml.Model;
+import com.example.tensor_flow.ml.Mascotas;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.mlkit.vision.text.Text;
@@ -162,10 +162,10 @@ public class MainActivity extends AppCompatActivity implements OnSuccessListener
     //
     public void PersonalizedModel(View v) {
         try {
-            Model model = Model.newInstance(getApplicationContext());
+            Mascotas model = Mascotas.newInstance(getApplicationContext());
             TensorImage image = TensorImage.fromBitmap(mSelectedImage);
 
-            Model.Outputs outputs = model.process(image);
+            Mascotas.Outputs outputs = model.process(image);
             List<Category> probability = outputs.getProbabilityAsCategoryList();
 
             Collections.sort(probability, new CategoryComparator());
@@ -240,10 +240,10 @@ public class MainActivity extends AppCompatActivity implements OnSuccessListener
         rgbFrameBitmap.setPixels(rgbBytes, 0, previewWidth, 0, 0, previewWidth, previewHeight);
 
         try {
-            Model model = Model.newInstance(getApplicationContext());
+            Mascotas model = Mascotas.newInstance(getApplicationContext());
             TensorImage image = TensorImage.fromBitmap(rgbFrameBitmap);
 
-            Model.Outputs outputs = model.process(image);
+            Mascotas.Outputs outputs = model.process(image);
             List<Category> probability = outputs.getProbabilityAsCategoryList();
             Collections.sort(probability, new CategoryComparator());
             String res="";
